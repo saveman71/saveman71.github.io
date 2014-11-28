@@ -4,11 +4,13 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
+var noWWW = require('./lib/middlewares/no-www.js');
 
 var app = module.exports = express();
 
 require("./config")(app);
 
+app.use(noWWW);
 // view engine setup
 app.set('views', path.join(__dirname, 'lib/views'));
 app.set('view engine', 'jade');
