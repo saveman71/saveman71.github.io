@@ -6,10 +6,6 @@
     border-bottom: 1px solid $grey-color-light;
     height: 15em;
 
-    background-size: cover;
-    background-position: 50% 50%;
-    opacity: 0;
-    transition: opacity .75s ease;
 
     // Positioning context for the mobile navigation icon
     position: relative;
@@ -23,7 +19,20 @@
             text-align: center;
         }
     }
+
+    .bg-container {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-position: 50% 50%;
+        transition: opacity .75s ease;
+        content: "";
+        opacity: 0;
+        z-index: -1;
+    }
 }
+
 
 .site-title {
     font-size: 2.5em;
@@ -36,11 +45,14 @@
 
 .site-title-wrapper {
     opacity: .8;
+
+
     *, *:visited {
-        color: white;
-    }
-    &.dark-text * {
+        // transition: color .75s ease;
         color: #111;
+    }
+    &.light-text * {
+        color: white;
     }
 }
 

@@ -50,11 +50,11 @@
 
 <script>
   var updateHeader = function() {
-    var header = document.getElementsByTagName('header')[0];
-    var link = document.querySelector('header .center-wrapper');
+    var container = document.querySelector('header .bg-container');
+    var text = document.querySelector('header .center-wrapper');
 
-    var sizeX = header.clientWidth * 1.5;
-    var sizeY = header.clientHeight * 1.5;
+    var sizeX = container.clientWidth * 1.5;
+    var sizeY = container.clientHeight * 1.5;
     var pattern = Trianglify({
       variance: 0.4,
       cell_size: 45,
@@ -65,7 +65,7 @@
     svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     svgData = svgElement.outerHTML;
     var uri = 'data:image/svg+xml;charset=utf8,' + svgData;
-    header.style.backgroundImage = 'url(\'' + uri + '\')';
+    container.style.backgroundImage = 'url(\'' + uri + '\')';
 
     var canvas = document.createElement('canvas');
     var ctx = canvas.getContext('2d');
@@ -80,11 +80,11 @@
       var pixelData = ctx.getImageData(img.width / 2, img.height / 2, 1, 1).data;
 
       var bgDelta = (pixelData[0] * 0.299) + (pixelData[1] * 0.587) + (pixelData[2] * 0.114);
-      if((255 - bgDelta) < 50) {
-        link.classList.toggle('dark-text');
+      if((255 - bgDelta) > 70) {
+        text.classList.toggle('light-text');
       }
 
-      header.style.opacity = 1;
+      container.style.opacity = 1;
     };
 
     img.src = uri;
