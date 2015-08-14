@@ -11,3 +11,6 @@ github_username:  saveman71
 
 # Build settings
 markdown: kramdown
+
+sass:
+    style: :compressed
