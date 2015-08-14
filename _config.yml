@@ -8,6 +8,7 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://saveman71.com" # the base hostname & protocol for your site
 twitter_username: saveman71
 github_username:  saveman71
+google_verification_token: QY2x_oFApuIWSFrjhZF79em7qX1yIXCvt88zpBiCSyI
 
 # Build settings
 markdown: kramdown
