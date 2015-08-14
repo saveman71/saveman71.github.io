@@ -1,0 +1,13 @@
+# Site settings
+title: Antoine Bolvy
+email: antoine.bolvy@gmail.com
+name: Antoine Bolvy
+description: >
+  This is my personnal website. Find my résumé, social profiles and more.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://saveman71.com" # the base hostname & protocol for your site
+twitter_username: saveman71
+github_username:  saveman71
+
+# Build settings
+markdown: kramdown
