@@ -64,7 +64,7 @@
     var svgElement = pattern.svg();
     svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     svgData = svgElement.outerHTML;
-    var uri = 'data:image/svg+xml;charset=utf8,' + svgData;
+    var uri = 'data:image/svg+xml;base64,' + btoa(svgData);
     container.style.backgroundImage = 'url(\'' + uri + '\')';
 
     var canvas = document.createElement('canvas');
