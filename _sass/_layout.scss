@@ -5,32 +5,11 @@
     // border-top: 5px solid $grey-color-dark;
     border-bottom: 1px solid $grey-color-light;
     height: 15em;
-
+    display: flex;
+    align-items: center;
 
     // Positioning context for the mobile navigation icon
     position: relative;
-
-    > .wrapper {
-        display: table;
-        height: 100%;
-        > .center-wrapper {
-            display: table-cell;
-            vertical-align: middle;
-            text-align: center;
-        }
-    }
-
-    .bg-container {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        background-size: cover;
-        background-position: 50% 50%;
-        transition: opacity .75s ease;
-        content: "";
-        opacity: 0;
-        z-index: -1;
-    }
 }
 
 
@@ -44,9 +23,6 @@
 }
 
 .site-title-wrapper {
-    opacity: .8;
-
-
     *, *:visited {
         // transition: color .75s ease;
         color: #111;
