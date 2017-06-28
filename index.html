@@ -1,36 +1,32 @@
 ---
 layout: default
+title: Home
 ---
 
-<div class="home">
-  <p>
-    After being a full stack Node.js for one year at <a href="http://anyfetch.com">AnyFetch</a>, a French startup, I decided to become a freelance developer. This unique experience gave me the opportunity to help design and scale a powerful API managing and indexing thousands of documents per day.
-  </p>
+{% include intro.html %}
 
-  <p>
-    This led me to contribute to open-source projects while maintaining tested repositories and producing documented and clean pull requests. Feel free to check out my <a href="https://github.com/{{ site.github_username }}">Github</a>!
-  </p>
+<section class="post-list">
+  <div class="container">
+    {% for post in site.posts %}
+      {% unless post.next %}
+        <h2 class="category-title">{{ post.date | date: '%Y' }}</h2>
+      {% else %}
+        {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+        {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
+        {% if year != nyear %}
+          <h2 class="category-title">{{ post.date | date: '%Y' }}</h2>
+        {% endif %}
+      {% endunless %}
+      <article class="post-item">
+        <div class="article-title"><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></div>
+        <span class="post-meta date-label">{{ post.date | date: "%b %d" }}</span>
+      </article>
+    {% else %}
+      <h2 class="category-title">{{ site.time | date: '%Y' }}</h2>
+      <article class="post-item">
+        <div class="article-title">No posts yet</div>
+      </article>
+    {% endfor %}
+  </div>
 
-  <p>
-    Being in charge of product development is not a problem (I built a complex Chrome extension from the start to the end). I like being challenged daily with new issues, new programming frameworks (e.g. I built a multiplatform desktop email app over a weekend with Polymer.js and Electron).
-  </p>
-
-  <p>
-    I build documented, clean and fully tested code, and will gladly follow a peer-reviewing process.
-  </p>
-
-  <p>
-    I really like the free software philosophy and use a Linux environment (Arch Linux) as my daily driver.
-  </p>
-
-  <p>
-    I'm open for opportunities!
-  </p>
-
-  <hr class="separator">
-
-  <p class="epitech">
-    I am currently pursuing my scholarship in computer science, attending my fourth year at EPITECH, a top French IT school. During this fourth year I'm following a bachelor's degree program at Concordia University in Montréal.
-  </p>
-
-</div>
+</section>

@@ -1,27 +1,14 @@
+---
+layout: compress
+---
 <!DOCTYPE html>
 <html>
-
   {% include head.html %}
-
   <body>
-
-    {% include header.html %}
-
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
-    </div>
-<!--
-    <ul>
-      {% for post in site.posts %}
-        <li>
-          <a href="{{ post.url }}">{{ post.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
- -->
+    <main class="wrapper">
+      {% include header.html %}
+      {{ content }}
+    </main>
     {% include footer.html %}
-
   </body>
 </html>

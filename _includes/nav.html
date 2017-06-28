@@ -1,0 +1,11 @@
+
+<nav class="nav">
+  <div class="container">
+    <h1 class="logo"><a href="/">{{ site.title }}</a></h1>
+    <ul class="navbar">
+      {% for item in site.navbar %}
+        <li><a href="{{ item.slug }}">{{ item.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>

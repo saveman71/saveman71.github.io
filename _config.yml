@@ -1,17 +1,59 @@
-# Site settings
-title: Antoine Bolvy
-email: antoine.bolvy@gmail.com
-name: Antoine Bolvy
-description: >
-  This is my personnal website. Find my résumé, social profiles and more.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://saveman71.com" # the base hostname & protocol for your site
-twitter_username: saveman71
-github_username:  saveman71
-google_verification_token: QY2x_oFApuIWSFrjhZF79em7qX1yIXCvt88zpBiCSyI
+
+# SEO settings
+title: "Antoine Bolvy"
+description: "Personal webpage."
+keywords: "antoine, bolvy, saveman71, blog, personal, website, technology"
+url: https://saveman71.com/ # site url
+# baseurl: "/" # apply repo name if use it under gh-pages branch
+baseurl: null # apply null if repo name is something like username.github.io
+
+google_analytics: UA-XXXXX-XX
+repo: http://github.com/saveman71/saveman71.com
+disqus_shortname: "saveman71"
+twitter_username: "saveman71"
+comments: true
 
 # Build settings
-markdown: kramdown
+permalink   : /:year/:title/
+markdown    : kramdown
+highlighter : rouge
 
+source: ./
+destination: ./_site
+
+# Sass configuration
 sass:
-    style: :compressed
+  sass_dir: assets/scss
+  style: compressed # expanded
+
+# Author settings
+author:
+  name     : "Antoine Bolvy"
+  job      : "Sudent & Freelance Software Engineer"
+  bio      : "I'm a freelance consultant and developer who helps great clients achieving their needs."
+  thumb    : /images/author.jpg
+  email    : antoine.bolvy@gmail.com
+  url      : https://saveman71.com
+  github   : https://github.com/saveman71
+  twitter  : https://twitter.com/Saveman71
+  reddit   : https://reddit.com/u/Saveman71
+  facebook : https://www.facebook.com/saveman71
+  linkedin : https://linkedin.com/in/antoiebolvy
+
+# social settings
+og_locale: "en_US"
+twitter_card: "summary_large_image"
+twitter_site: "@Saveman71"
+
+gems:
+  - bourbon
+  - jekyll-paginate
+
+# navbar pages
+navbar:
+  - slug : about
+    title: About
+  - slug : /assets/antoine-bolvy-resume.pdf
+    title: Résumé
+
+exclude: ["gulp", "node_modules", "bower", "bower_components", "vendor", "config.rb", "src", "Gemfile", "Gemfile.lock", ".rvmrc", ".rbenv-version", "package.json", "gulpfile.js", "README.md", "Rakefile", "changelog.md"]
