@@ -29,8 +29,8 @@ sass:
 # Author settings
 author:
   name     : "Antoine Bolvy"
-  job      : "Sudent & Freelance Software Engineer"
-  bio      : "I'm a freelance consultant and developer who helps great clients achieving their needs."
+  job      : "Student & Freelance Software Engineer"
+  mission  : "well determined in changing the world, one line of code at a time"
   thumb    : /images/author.jpg
   email    : antoine.bolvy@gmail.com
   url      : https://saveman71.com
@@ -51,6 +51,8 @@ gems:
 
 # navbar pages
 navbar:
+  - slug : /
+    title: Home
   - slug : about
     title: About
   - slug : /assets/antoine-bolvy-resume.pdf
