@@ -7,7 +7,7 @@ url: https://saveman71.com/ # site url
 # baseurl: "/" # apply repo name if use it under gh-pages branch
 baseurl: null # apply null if repo name is something like username.github.io
 
-google_analytics: UA-XXXXX-XX
+google_analytics: UA-42188815-1
 repo: http://github.com/saveman71/saveman71.com
 disqus_shortname: "saveman71"
 twitter_username: "saveman71"
