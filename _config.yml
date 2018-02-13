@@ -55,7 +55,5 @@ navbar:
     title: Home
   - slug : about
     title: About
-  - slug : /assets/antoine-bolvy-resume.pdf
-    title: Résumé
 
 exclude: ["gulp", "node_modules", "bower", "bower_components", "vendor", "config.rb", "src", "Gemfile", "Gemfile.lock", ".rvmrc", ".rbenv-version", "package.json", "gulpfile.js", "README.md", "Rakefile", "changelog.md"]

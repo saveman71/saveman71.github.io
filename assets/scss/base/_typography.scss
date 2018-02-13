@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato|Raleway|Merriweather');
+@import url('https://fonts.googleapis.com/css?family=Philosopher:400,700|Open Sans');
 
 body {
   color: $base-font-color;
@@ -18,7 +18,7 @@ h6 {
   font-size: $base-font-size;
   line-height: $heading-line-height;
   margin: $small-spacing 0 $small-spacing 0;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 h1 {
@@ -44,11 +44,6 @@ h6 {
 
 p {
   margin: 0 0 $small-spacing;
-
-  &.lead {
-    font-size: rem(22);
-    font-weight: 300;
-  }
 }
 
 a {

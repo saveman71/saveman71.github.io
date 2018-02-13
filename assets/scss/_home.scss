@@ -1,0 +1,25 @@
+.intro {
+  .container {
+    padding-bottom: 0;
+  }
+
+  margin-bottom: $base-spacing * 4;
+}
+
+.logo {
+  float: left;
+  margin: 0 0 1em 0;
+  cursor: pointer;
+  letter-spacing: 0.8px;
+  font-family: $heading-font-family;
+  font-size: rem(35);
+  line-height: 35px;
+  font-weight: bold;
+}
+
+p {
+  &.lead {
+    font-size: rem(22);
+    font-weight: 300;
+  }
+}

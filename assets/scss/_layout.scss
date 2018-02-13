@@ -74,7 +74,7 @@ main {
   padding-bottom: .05em;
   border-bottom: 2px solid transparent;
 
-  @include transition(border 300ms linear);
+  @include transition(border $base-duration $base-timing);
 
   &:hover,
   &:focus,
@@ -86,29 +86,6 @@ main {
 .site-header {
   margin-bottom: $base-spacing * 4;
   min-height: 80px;
-}
-
-.intro {
-  a {
-    @extend .link;
-  }
-
-  .container {
-    padding-bottom: 0;
-  }
-
-  margin-bottom: $base-spacing * 4;
-}
-
-.logo {
-  float: left;
-  margin: 0 0 1em 0;
-  cursor: pointer;
-  letter-spacing: 0.8px;
-  font-family: $heading-font-family;
-  font-size: rem(35);
-  line-height: 35px;
-  font-weight: bold;
 }
 
 .nav {
@@ -152,7 +129,6 @@ main {
 
   a {
     color: $action-color;
-    font-weight: bold;
   }
 
   .article-title {
@@ -299,4 +275,57 @@ sup {
   border-top: 0.2em solid lighten($light-gray-color, 13%);
   margin-bottom: $base-spacing * 2;
   margin-top: $base-spacing * 2;
+}
+
+.resumes {
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: 1fr 1fr;
+
+  margin-top: 1em;
+  font-size: rem(20);
+  font-weight: 300;
+
+  p {
+    grid-column: 1 / span 2;
+  }
+
+  a {
+    grid-row: 2;
+    height: 3em;
+    font-size: 1.1em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: lighten($black-color, 60%);
+
+    border: 1px solid lighten($light-gray-color, 15%);
+
+    @include transition(border $base-duration $base-timing);
+
+    &:first-of-type {
+      border: 1px solid lighten($light-gray-color, 12%);
+      @include prefixer(box-shadow, 0 0.2em 2em darken(white, 1.5%), webkit spec);
+    }
+
+    &:hover {
+      color: lighten($black-color, 10%);
+      border: 2px solid lighten($blue-color, 10%);
+    }
+
+    &:active {
+      background: darken(white, 5%);
+    }
+
+    &:not(:hover) .emoji-icon {
+      @include filter(grayscale(30%));
+      opacity: .6;
+    }
+  }
+}
+
+a.sneaky-calendar {
+  color: inherit;
+  border-bottom: 2px dashed darken(white, 5%);
 }
