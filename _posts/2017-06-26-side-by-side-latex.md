@@ -40,7 +40,7 @@ This code defines the environment `sidebyside`, which you can use in the followi
 \sidebyside[.30][.65]{This side is 30\%\dotfill}{And this one 65\%, creating spacing\dotfill}
 ```
 
-Enough writing, an image is worth a thousand words (colors and text where added afterwards, but the dimentions are the ones in the previous example):
+Enough writing, an image is worth a thousand words (colors and text where added afterwards, but the dimensions are the ones in the previous example):
 
 ![](/assets/images/2017-06-26-side-by-side-latex/side-by-side-latex.svg){: width="80%"}
 
