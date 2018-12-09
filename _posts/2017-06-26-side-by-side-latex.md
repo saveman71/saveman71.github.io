@@ -2,14 +2,14 @@
 layout: post
 title:  "Side by side content in LaTeX"
 date:   2017-06-26 08:42:42 -0600
-categories: jekyll update
+categories: latex
 ---
 
 If there is one thing that keeps popping up in my LaTeX needs, it's the ability to put a block of text, a table, anything on a side of a page, and something else on the other side.
 
 This is why I created this relatively small environment that basically just wraps two *minipages*, but considerably reduces the amount of code written in the final document:
 
-{% raw  %}
+{% raw %}
 ```latex
 \usepackage{xparse}
 
@@ -46,7 +46,7 @@ Enough writing, an image is worth a thousand words (colors and text where added 
 
 The full code for this last example is:
 
-{% raw  %}
+{% raw %}
 ```latex
 \documentclass[varwidth]{standalone}
 
