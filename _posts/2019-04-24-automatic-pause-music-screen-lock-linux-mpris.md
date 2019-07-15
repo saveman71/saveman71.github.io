@@ -9,11 +9,11 @@ categories: linux hacks mpris
 
 I've always been annoyed that the music I listen to when I work continues to play when I'm away from the keyboard. Having to listen to the end of your favorite Hans Zimmer soundtrack when coming back from a break is not fun.
 
-Hopefully there is a thing I always do when I'm leaving my computer: **lock the screen**. So I started looking around on the internet, thinking "There must be someone who did this before". But no, I had leads, but not a functionnal and plug and play solution I could just install on my system.
+Hopefully there is a thing I always do when I'm leaving my computer: **lock the screen**. So I started looking around on the Internet, thinking "There must be someone who did this before". But no, I had leads, but not a functional and plug and play solution I could just install on my system.
 
-I also had the need that it would work with pretty much anything that could play audio, because of a second problem : my headphones are pretty noisy when not on my head, so if I forget a Youtube video playing for example, it could annoy some of my coworkers.
+I also needed it to work with pretty much anything that could play audio, because of a second problem : my headphones are pretty noisy when not on my head, so if I forget a Youtube video playing for example, it could annoy some of my coworkers.
 
-# Builing the solution
+# Building the solution
 
 ## Listening to screen locks/unlocks
 
@@ -37,9 +37,9 @@ This nifty little script (let's call it `listen-lock.sh`) allows us to react on 
 
 ## Pausing and playing through MPRIS2
 
-So we're looking to programatically pause and play (control) as many audio players as we can, through ideally a single interface. A quick search leads us to MPRIS, wich the name actually really describes what we need: _Media Player Remote Interfacing Specification_. Great!
+So we're looking to programatically pause and play (control) as many audio players as we can, through ideally a single interface. A quick search leads us to MPRIS, whose name actually really describes what we need: _Media Player Remote Interfacing Specification_. Great!
 
-Now, not every player out there supports this spec, but a reasonnable amount do. At least the one I'm using the most, Spotify, implements the spec! If your player of choice doesn't, it's possible to install plugins. Here are the ones I'm using:
+Now, not every player out there supports this spec, but a reasonable amount do. At least the one I'm using the most, Spotify, implements the spec! If your player of choice doesn't, it's possible to install plugins. Here are the ones I'm using:
 
 * Chrome (supports Youtube videos, Soundcloud): <https://github.com/otommod/browser-mpris2>
 * MPV: https://github.com/hoyon/mpv-mpris, and it's AUR page: <https://aur.archlinux.org/packages/mpv-mpris/>
@@ -121,6 +121,8 @@ status=$((
 
 This way, the `status` variable will either be `"Playing"`, `"Paused"` or `""` when no status is available.
 
+**Caveat:** If you are playing multiple audio in one medium, e.g. Chrome or MPV, this script only handles one "channel" per medium. It would be pretty straightforward to add a looping mechanism to handle these.
+
 Let's put all this together:
 
 ```bash
@@ -152,7 +154,7 @@ done )
 
 What about multiple players support you say?
 
-# Mutliple players
+# Multiple players
 
 Just add a for loop per action and send the D-Bus messages for each command, and transform our `last_playing` variable to an array!
 
@@ -188,7 +190,7 @@ done )
 
 Additionnally to screen lock/unlock, I wanted my music to stop when I was unplugging my headphones, when going to a meeting with my laptop for example. Given our current script and implementation, it's very easy to add new ways to trigger the pause/unpause of the media players.
 
-After a bit of Google-fu we quicly find that a way to listen to these events is provided through the [`acpi_listen` command, of the `acpid` daemon](https://wiki.archlinux.org/index.php/acpid).
+After a bit of Google-fu we quickly find that a way to listen to these events is provided through the [`acpi_listen` command, of the `acpid` daemon](https://wiki.archlinux.org/index.php/acpid).
 
 `acpi_listen` will produce lines similar to `"jack/headphone HEADPHONE unplug"` when the jack cable is unplugged, so we can just create a new script `listen-jack.sh` with the following:
 
@@ -248,4 +250,4 @@ As a bonus I also added notifications!
 
 # Conclusion
 
-I hope this article helped you solve a need that I think a lot of people don't know they need until they're using a similar solution. Coming back to the same music you were listening to before going AFK is one of the good feelings in life. Cheers!
+I hope this article helped you solve a need that I think a lot of people don't know they have until they're using a similar solution. Coming back to the same music you were listening to before going AFK is one of the good feeling in life. Cheers!
