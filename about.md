@@ -6,9 +6,9 @@ permalink: /about/
 
 This is my personal website. Here I will occasionally post my findings, tips and tricks and more generally share my perspectives regarding the software I build and use within my freelance activities and others.
 
-I'm currently a 5<sup>th</sup> year student at Epitech, a French IT school, and I'm currently located in Paris, France.
+I'm currently a Lead Software Engineer at [La Belle Assiette](https://labelleassiette.fr), a private chef company that edits its own premium booking website (think AirBnB for private chefs).
 
-I'm actively looking for a full-time opportunity starting <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Remember+to+Hire+Antoine+Bolvy!&dates=20180701/20180702&details=He's+available+in+September!+:+https://saveman71.com&sf=true&output=xml" class="sneaky-calendar" target="_blank">September 2018</a>! [See my résumé for more](/resume).
+I'm currently located in Paris, France.
 
 You can also find me on social networks:
 
