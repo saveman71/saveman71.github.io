@@ -39,6 +39,25 @@ Note that the old syntax is still supported as per the new README:
 
 However, I personnally suggest migrating to the new syntax anyway.
 
+## Caveat (20190822 edit)
+
+If you provide the options as a separate parameter, options won't be sourced from the `data` parameter _at all_. This could prevent options that were previously passed thought the `data` paramter to reach `ejs`, so be very careful with this one.
+
+For example, express will provide the `view cache` option in a nested `settings` object of the `data` parameter. If you, for example, wrap this logic with your own that adds the options parameter, EJS will ignore express' options.
+
+**Bad code:**
+```js
+function renderFileWithOption(filePath, templateData, cb) {
+  const options = {
+    // Example EJS option, could be any
+    rmWhitespace: true,
+  };
+
+  // This call would not take into account templateData.settings['view cache']
+  ejs.renderFile(filePath, templateData, options, cb);
+}
+```
+
 # No more filters
 
 The main breaking change is _"Removed support for filters"_. This means for _all_ your templates, if you use global filters with the `<%=: data | filter %>` syntax, this will break.
@@ -214,7 +233,7 @@ Here are the list of the builtin filters for reference:
 
 # Other Changes
 
-An undocumented change is that the string equivalent of `null` and `undefined` where respectively `'null'` and `'undefined'` in EJS 1.0, and it's now both empty strings (`''`) in EJS 2.0.
+An undocumented change is that the string equivalent of `null` and `undefined` were respectively `'null'` and `'undefined'` in EJS 1.0, and it's now both empty strings (`''`) in EJS 2.0.
 
 I've tried to test the other types as well to check for other differences:
 
