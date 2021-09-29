@@ -42,7 +42,7 @@ I could have re-introduced the interactive reverse search from histdb, but I fig
 
 # Re-creating `.zsh_history`
 
-I thought that would be easy. I mean straightforward. I mean, I really thought zsh's format would be logical right? No. Since I had enabled `extended_history`, the format is the following (https://stackoverflow.com/a/37977775/2367848 helped!):
+I thought that would be easy. I mean straightforward. I mean, I really thought zsh's format would be logical right? No. Since I had enabled `extended_history`, the format is the following ([this answer on Stack Overflow helped!](https://stackoverflow.com/a/37977775/2367848)):
 
 ```
 : timestamp:duration;command
