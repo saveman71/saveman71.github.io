@@ -75,10 +75,16 @@ This creates a `out.json` that looks like this:
 We can then process it with `jq`:
 
 ```
-cat out.json| jq -r '.[] | ": \(.start_time):\(.duration);\(.argv)"' > history
+cat out.json | jq -r '.[] | ": \(.start_time):\(.duration);\(.argv)"' > history
 ```
 
 It just means, output the three fields, with `: ` before and then a `:` and a `;` between the fields.
+
+**Update**: the version above is simplistic: here is a version that takes care of `null` commands (ignores them), replaces `\n` by `bash` compatible `\` followed by `\n` and casts the duration to a number (sometimes it's null):
+
+```
+cat out.json | jq -r '.[] | select(.argv != null) | .argv |= sub("\n";"\\\n";"g") | ": \(.start_time):\(.duration // 0);\(.argv)' > history
+```
 
 Then diff to confirm everything looks good:
 ```
@@ -96,6 +102,12 @@ cat history > ~/.zsh_history
 ```
 
 Using the redirection keeps the open file handles valid for anything that might be using this file (like your shell!)
+
+Here's a one-liner (**DO A BACKUP BEFORE**):
+
+```
+sqlite3 -json zsh-history.db "select history.start_time,history.duration,commands.argv from history left join commands on history.command_id = commands.rowid;" | jq -r '.[] | select(.argv != null) | .argv |= sub("\n";"\\\n";"g") | ": \(.start_time):\(.duration // 0);\(.argv)"' > ~/.zsh_history
+```
 
 Restart your shell, and your history is back! Yay!
 
