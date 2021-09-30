@@ -28,15 +28,15 @@ autoload -Uz add-zsh-hook
 # bindkey '^r' _histdb-isearch
 ```
 
-I added histdb two months ago in an attempt at syncing my history across computers (though now I only use one computer, how the turntables...). It stores the history as a `sqlite3` database which makes merging and knowing what host contributed what easier. At the time, I made the good call to "import" all the history I had to the `histdb` database.
+I added histdb two months ago in an attempt at syncing my history across computers (though now I only use one computer, how the turntables...). It stores the history as a `sqlite3` database which makes merging and knowing what host contributed what easier. Back then, I made a good call: "import" all the history I had to the `histdb` database.
 
-At first I was using the interactive `histdb` search, but I didn't feel like it was any better than the build-in one so I quicly disabled it.
+At first I was using the interactive `histdb` search, but I didn't feel like it was any better than the built-in one so I quickly disabled it.
 
 # The drama
 
-Now comes today, where for some reason, `zsh` decided I didn't need the last 6 months of my history anymore (I have over 6 years of history, adding up to a 4M file). As mentionned earlier, I felt naked. What was that command that you use to change directory again?
+Now comes today, where for some reason, `zsh` decided I didn't need the last 6 months of my history anymore (I have over 6 years of history, adding up to a 4M file). As mentioned earlier, I felt naked. What was that command that you use to change directory again?
 
-At first I felt desperate, but then I remember `histdb` does save everything in a separate database! A quick `sqlite3 ~/.histdb/zsh-history.db` later and I quickly confirmed everything was there. The only caveat is histdb ignores some commands by default like `cd` and `ls`, but that's not the ones I'm interested in.
+At first I felt desperate, but then I remembered `histdb` does save everything in a separate database! A quick `sqlite3 ~/.histdb/zsh-history.db` later and I confirmed everything was there. The only caveat is histdb ignores some commands by default like `cd` and `ls`, but that's not the ones I'm interested in.
 
 I could have re-introduced the interactive reverse search from histdb, but I figured it would be quite straightforward to instead try to re-create a `.zsh_history` file from the database.
 
@@ -48,7 +48,7 @@ I thought that would be easy. I mean straightforward. I mean, I really thought z
 : timestamp:duration;command
 ```
 
-Colon, space, timestamp, colon, duration, semicolon and at last the command. Multiline commands are represented by backslashes but hopefully these are stored as is in the database.
+Colon, space, timestamp, colon, duration, semicolon and at last the command. Multiline commands are represented by backslashes but hopefully these are stored as-is in the database.
 
 Let's export that from the database. It sure looks a lot like csv, so I tried that first, except CSV don't start with a colon, and don't mix `;` and `:`, and add quotes when feeling like it. So sqlite's CSV exporter won't work.
 
@@ -72,9 +72,10 @@ This creates a `out.json` that looks like this:
 ...etc.
 ```
 
+
 We can then process it with `jq`:
 
-```
+```sh
 cat out.json | jq -r '.[] | ": \(.start_time):\(.duration);\(.argv)"' > history
 ```
 
