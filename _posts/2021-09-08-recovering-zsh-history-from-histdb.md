@@ -28,7 +28,7 @@ autoload -Uz add-zsh-hook
 # bindkey '^r' _histdb-isearch
 ```
 
-I added histdb two months ago in an attempt at syncing my history across computers (though now I only use one computer, how the tables turn...). It stores the history as a `sqlite3` database which makes merging and knowing what host contributed what easier. Back then, I made a good call: "import" all the history I had to the `histdb` database.
+I added histdb two months ago in an attempt at syncing my history across computers (though now I only use one computer, how the turntables...). It stores the history as a `sqlite3` database which makes merging and knowing what host contributed what easier. Back then, I made a good call: "import" all the history I had to the `histdb` database.
 
 At first I was using the interactive `histdb` search, but I didn't feel like it was any better than the built-in one so I quickly disabled it.
 
