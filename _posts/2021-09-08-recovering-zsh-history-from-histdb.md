@@ -28,7 +28,7 @@ autoload -Uz add-zsh-hook
 # bindkey '^r' _histdb-isearch
 ```
 
-I added histdb two months ago in an attempt at syncing my history across computers (though now I only use one computer, how the turntables...). It stores the history as a `sqlite3` database which makes merging and knowing what host contributed what easier. Back then, I made a good call: "import" all the history I had to the `histdb` database.
+I added histdb two months ago in an attempt at syncing my history across computers (though now I only use one computer, [how the turntables](https://www.youtube.com/watch?v=XmLnHPx_q2A)...). It stores the history as a `sqlite3` database which makes merging and knowing what host contributed what easier. Back then, I made a good call: "import" all the history I had to the `histdb` database.
 
 At first I was using the interactive `histdb` search, but I didn't feel like it was any better than the built-in one so I quickly disabled it.
 
@@ -60,7 +60,7 @@ SQLite version 3.36.0 2021-06-18 18:36:39
 Enter ".help" for usage hints.
 sqlite> .mode json
 sqlite> .once out.json
-sqlite> select history.start_time,history.duration,commands.argv from history left join commands on history.command_id = commands.rowid;
+sqlite> SELECT history.start_time,history.duration,commands.argv FROM history LEFT JOIN commands ON history.command_id = commands.rowid;
 ```
 
 This creates a `out.json` that looks like this:
@@ -72,20 +72,28 @@ This creates a `out.json` that looks like this:
 ...etc.
 ```
 
+We need to make sure there are not `null` values as commands though, and also that the durations, sometimes `null`, are casted to `0`. The resulting command is:
+
+```sql
+SELECT history.start_time AS start_time,IFNULL(history.duration, 0) as duration,commands.argv
+FROM history LEFT JOIN commands ON history.command_id = commands.rowid
+WHERE commands.argv IS NOT NULL;
+```
+
 
 We can then process it with `jq`:
 
 ```sh
-cat out.json | jq -r '.[] | ": \(.start_time):\(.duration);\(.argv)"' > history
+cat out.json | jq -r '.[] | .argv |= sub("(?<=[^\\\\])\n";"\\\n";"g") | ": \(.start_time):\(.duration);\(.argv)"' > history
 ```
 
-It just means, output the three fields, with `: ` before and then a `:` and a `;` between the fields.
-
-**Update**: the version above is simplistic: here is a version that takes care of `null` commands (ignores them), replaces `\n` by `bash` compatible `\` followed by `\n` and casts the duration to a number (sometimes it's null):
+It just means, output the three fields, with `: ` before and then a `:` and a `;` between the fields. It also replaces (`sub(` call) newlines not containing a bash like backslash with a backslash (`\`) followed by `\n`, using a postive lookahead:
 
 ```
-cat out.json | jq -r '.[] | select(.argv != null) | .argv |= sub("\n";"\\\n";"g") | ": \(.start_time):\(.duration // 0);\(.argv)' > history
+(?<=[^\\])\n
 ```
+
+Regex explanation and tests, because above it looks a bit ugly with escaping: [https://regex101.com/r/L1rYnh/1](https://regex101.com/r/L1rYnh/1).
 
 Then diff to confirm everything looks good:
 ```
@@ -107,8 +115,15 @@ Using the redirection keeps the open file handles valid for anything that might 
 Here's a one-liner (**DO A BACKUP BEFORE**):
 
 ```
-sqlite3 -json zsh-history.db "select history.start_time,history.duration,commands.argv from history left join commands on history.command_id = commands.rowid;" | jq -r '.[] | select(.argv != null) | .argv |= sub("\n";"\\\n";"g") | ": \(.start_time):\(.duration // 0);\(.argv)"' > ~/.zsh_history
+sqlite3 -json zsh-history.db "SELECT history.start_time AS start_time,IFNULL(history.duration, 0) as duration,commands.argv from history left join commands on history.command_id = commands.rowid WHERE commands.argv IS NOT NULL;" | jq -r '.[] | .argv |= sub("(?<=[^\\\\])\n";"\\\n";"g") | ": \(.start_time):\(.duration);\(.argv)"' > ~/.zsh_history
 ```
+
+**Update**: [@Neamar](https://github.com/Neamar) suggested using SQL to produce the weird format directly with:
+```
+SELECT ": " || history.start_time || ":" || history.duration || ";" || commands.argv FROM history LEFT JOIN commands ON history.command_id = commands.rowid;
+```
+
+However you're on your own for the multiline post processing and need to add back casting as well.
 
 Restart your shell, and your history is back! Yay!
 
