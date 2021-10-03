@@ -84,10 +84,10 @@ WHERE commands.argv IS NOT NULL;
 We can then process it with `jq`:
 
 ```sh
-cat out.json | jq -r '.[] | .argv |= sub("(?<=[^\\\\])\n";"\\\n";"g") | ": \(.start_time):\(.duration);\(.argv)"' > history
+cat out.json | jq -r '.[] | .argv |= sub("(?<=[^\\\\])\n";"\\\\\n";"g") | ": \(.start_time):\(.duration);\(.argv)"' > history
 ```
 
-It just means, output the three fields, with `: ` before and then a `:` and a `;` between the fields. It also replaces (`sub(` call) newlines not containing a bash like backslash with a backslash (`\`) followed by `\n`, using a postive lookahead:
+It just means, output the three fields, with `: ` before and then a `:` and a `;` between the fields. It also replaces (`sub(` call) newlines not containing a bash like backslash with a double backslash (`\\`) followed by `\n`, using a postive lookahead:
 
 ```
 (?<=[^\\])\n
@@ -115,7 +115,7 @@ Using the redirection keeps the open file handles valid for anything that might 
 Here's a one-liner (**DO A BACKUP BEFORE**):
 
 ```
-sqlite3 -json zsh-history.db "SELECT history.start_time AS start_time,IFNULL(history.duration, 0) as duration,commands.argv from history left join commands on history.command_id = commands.rowid WHERE commands.argv IS NOT NULL;" | jq -r '.[] | .argv |= sub("(?<=[^\\\\])\n";"\\\n";"g") | ": \(.start_time):\(.duration);\(.argv)"' > ~/.zsh_history
+sqlite3 -json zsh-history.db "SELECT history.start_time AS start_time,IFNULL(history.duration, 0) as duration,commands.argv from history left join commands on history.command_id = commands.rowid WHERE commands.argv IS NOT NULL;" | jq -r '.[] | .argv |= sub("(?<=[^\\\\])\n";"\\\\\n";"g") | ": \(.start_time):\(.duration);\(.argv)"' > ~/.zsh_history
 ```
 
 **Update**: [@Neamar](https://github.com/Neamar) suggested using SQL to produce the weird format directly with:
