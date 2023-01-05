@@ -3,7 +3,7 @@
 title: "Antoine Bolvy"
 description: "Personal webpage."
 keywords: "antoine, bolvy, saveman71, blog, personal, website, technology"
-url: https://saveman71.com/ # site url
+url: https://saveman71.com # site url
 # baseurl: "/" # apply repo name if use it under gh-pages branch
 baseurl: null # apply null if repo name is something like username.github.io
 
@@ -14,7 +14,7 @@ twitter_username: "saveman71"
 comments: true
 
 # Build settings
-permalink   : /:year/:title/
+permalink   : /:year/:title
 markdown    : kramdown
 highlighter : rouge
 
@@ -48,6 +48,7 @@ twitter_site: "@Saveman71"
 plugins:
   - bourbon
   - jekyll-paginate
+  - jekyll-sitemap
 
 # navbar pages
 navbar:
