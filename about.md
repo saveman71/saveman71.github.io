@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-permalink: /about/
+permalink: /about
 ---
 
 This is my personal website. Here I will occasionally post my findings, tips and tricks and more generally share my perspectives regarding the software I build and use within my freelance activities and others.
