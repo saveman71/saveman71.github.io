@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to remove trailing slash on Jekyll with Cloudlfare"
+title:  "How to remove trailing slash on Jekyll with Cloudflare"
 date:   2023-01-09 11:02:42 +0100
 categories:
 ---
@@ -19,13 +19,13 @@ All was well, until I learnt via Google's search console that I had more and mor
 
 This could just be left alone and it could probably fix itself, Google would quicly notice that and remove the old pages, index the new ones; etc. But for, again, SEO reasons, it's best to properly "migrate" the pages with a 301 redirect, so the SEO of each page isn't lost in the process.
 
-Unfortunately, neither GH pages or Jekyll (unless resorting to ugly techniques such as creating the directories, adding meta redirects there, etc.) can actually do these redirects themselves. That's where Cloudlfare comes in. Not the ideal solution, but for such a small "fix", it's practical and not an actual dependency.
+Unfortunately, neither GH pages or Jekyll (unless resorting to ugly techniques such as creating the directories, adding meta redirects there, etc.) can actually do these redirects themselves. That's where Cloudflare comes in. Not the ideal solution, but for such a small "fix", it's practical and not an actual dependency.
 
 I couldn't find a blog article that would explain how to solve that problem, that's why I'm writing this!
 
 Enough talk, let's get down to business. So you have your CF property, go to URL rules, create a new rule, and:
 
-[![Trailing slash removal using cloudlfare][1]][1]
+[![Trailing slash removal using cloudflare][1]][1]
 
 URL: `https://example.com/*/`
 
