@@ -1,4 +1,3 @@
-
 # SEO settings
 title: "Antoine Bolvy"
 description: "Personal webpage."
@@ -14,9 +13,9 @@ twitter_username: "saveman71"
 comments: true
 
 # Build settings
-permalink   : /:year/:title
-markdown    : kramdown
-highlighter : rouge
+permalink: /:year/:title
+markdown: kramdown
+highlighter: rouge
 
 source: ./
 destination: ./_site
@@ -28,17 +27,15 @@ sass:
 
 # Author settings
 author:
-  name     : "Antoine Bolvy"
-  job      : "Freelance Full-Stack Engineer"
-  mission  : "well determined in changing the world, one line of code at a time"
-  thumb    : /images/author.jpg
-  email    : antoine.bolvy@gmail.com
-  url      : https://saveman71.com
-  github   : https://github.com/saveman71
-  twitter  : https://twitter.com/Saveman71
-  reddit   : https://reddit.com/u/Saveman71
-  facebook : https://www.facebook.com/saveman71
-  linkedin : https://linkedin.com/in/antoiebolvy
+  name: "Antoine Bolvy"
+  thumb: /images/author.jpg
+  email: antoine.bolvy@gmail.com
+  url: https://saveman71.com
+  github: https://github.com/saveman71
+  twitter: https://twitter.com/Saveman71
+  reddit: https://reddit.com/u/Saveman71
+  facebook: https://www.facebook.com/saveman71
+  linkedin: https://linkedin.com/in/antoiebolvy
 
 # social settings
 og_locale: "en_US"
@@ -52,9 +49,28 @@ plugins:
 
 # navbar pages
 navbar:
-  - slug : /
+  - slug: /
     title: Home
-  - slug : /about
+  - slug: /about
     title: About
 
-exclude: ["gulp", "node_modules", "bower", "bower_components", "vendor", "config.rb", "src", "Gemfile", "Gemfile.lock", ".rvmrc", ".rbenv-version", "package.json", "gulpfile.js", "README.md", "Rakefile", "changelog.md", "template.md"]
+exclude:
+  [
+    "gulp",
+    "node_modules",
+    "bower",
+    "bower_components",
+    "vendor",
+    "config.rb",
+    "src",
+    "Gemfile",
+    "Gemfile.lock",
+    ".rvmrc",
+    ".rbenv-version",
+    "package.json",
+    "gulpfile.js",
+    "README.md",
+    "Rakefile",
+    "changelog.md",
+    "template.md",
+  ]

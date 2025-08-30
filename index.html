@@ -3,31 +3,32 @@ layout: default
 title: Home
 ---
 
-{% include intro.html %}
-
+<div class="container">
+    <p class="lead">Hi! I'm Antoine, welcome to my blog where I post about programming.</p>
+</div>
 
 <section class="post-list">
-  <div class="container">
-    {% for post in site.posts %}
-      {% unless post.next %}
+    <div class="container">
+        {% for post in site.posts %} {% unless post.next %}
         <h2 class="category-title">{{ post.date | date: '%Y' }}</h2>
-      {% else %}
-        {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
-        {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
-        {% if year != nyear %}
-          <h2 class="category-title">{{ post.date | date: '%Y' }}</h2>
-        {% endif %}
-      {% endunless %}
-      <article class="post-item">
-        <div class="article-title"><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></div>
-        <span class="post-meta date-label">{{ post.date | date: "%b %d" }}</span>
-      </article>
-    {% else %}
-      <h2 class="category-title">{{ site.time | date: '%Y' }}</h2>
-      <article class="post-item">
-        <div class="article-title">No posts yet</div>
-      </article>
-    {% endfor %}
-  </div>
-
+        {% else %} {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %} {% capture nyear %}{{ post.next.date | date: '%Y'
+        }}{% endcapture %} {% if year != nyear %}
+        <h2 class="category-title">{{ post.date | date: '%Y' }}</h2>
+        {% endif %} {% endunless %}
+        <article class="post-item">
+            <div class="article-title"><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></div>
+            <span class="post-meta date-label">{{ post.date | date: "%b %d" }}</span>
+        </article>
+        {% else %}
+        <h2 class="category-title">{{ site.time | date: '%Y' }}</h2>
+        <article class="post-item">
+            <div class="article-title">No posts yet</div>
+        </article>
+        {% endfor %}
+    </div>
 </section>
+
+<div class="container">
+    <p class="lead">If you want to know more about me, do take a look at my résumé!</p>
+    {% include resume.html %}
+</div>
