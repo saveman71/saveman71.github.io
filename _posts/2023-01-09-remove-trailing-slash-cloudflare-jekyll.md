@@ -31,7 +31,7 @@ URL: `https://example.com/*/`
 
 Destination URL: `https://example.com/$1`
 
-  [1]: https://i.stack.imgur.com/2pAVS.png
+  [1]: /assets/images/2023-01-09-remove-trailing-slash-cloudflare-jekyll/cf.png
 
 TADAA!
 
